@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-height: 5rem;
+  --gold: #bc9848;
+  --ink: #0b0a08;
+  --cream: #f5efe3;
+}
+
+@layer base {
+  * {
+    border-color: theme('colors.ash.700');
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 1.25rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-cream-100 antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: theme('colors.gold.500');
+    color: theme('colors.ink.950');
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.gold.400');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme('colors.ink.950');
+  }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.ash.700');
+    border-radius: 999px;
+    border: 2px solid theme('colors.ink.950');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.gold.700');
+  }
+}
+
+@layer components {
+  .section {
+    @apply relative py-20 sm:py-24 lg:py-32;
+  }
+
+  /* Kicker label — small, tracked, gold */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-medium uppercase tracking-[0.4em] text-gold-400;
+  }
+
+  .display-xl {
+    @apply font-display text-5xl leading-[0.98] sm:text-6xl lg:text-7xl xl:text-8xl;
+  }
+
+  .display-lg {
+    @apply font-display text-4xl leading-[1.02] sm:text-5xl lg:text-6xl;
+  }
+
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-sm border border-ash-700 bg-ink-850;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gold-hairline;
+  }
+
+  /* Thin uppercase label used above inputs, meta rows, etc. */
+  .label {
+    @apply text-[0.68rem] font-medium uppercase tracking-[0.22em] text-ash-300;
+  }
+
+  /* Warm dark scrim for text over photography */
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 10, 8, 0.45) 0%,
+      rgba(11, 10, 8, 0.6) 45%,
+      rgba(11, 10, 8, 0.92) 82%,
+      #0b0a08 100%
+    );
+  }
+
+  .scrim-side {
+    background: linear-gradient(
+        95deg,
+        rgba(11, 10, 8, 0.94) 0%,
+        rgba(11, 10, 8, 0.72) 40%,
+        rgba(11, 10, 8, 0.32) 78%,
+        rgba(11, 10, 8, 0.7) 100%
+      ),
+      linear-gradient(180deg, rgba(11, 10, 8, 0.5) 0%, rgba(11, 10, 8, 0.6) 60%, #0b0a08 100%);
+  }
+
+  /* Warm vignette + gold bloom */
+  .bloom {
+    background:
+      radial-gradient(60% 55% at 78% 12%, rgba(188, 152, 72, 0.14) 0%, transparent 62%),
+      radial-gradient(50% 50% at 10% 90%, rgba(188, 152, 72, 0.07) 0%, transparent 60%);
+  }
+
+  .lattice-overlay {
+    @apply pointer-events-none absolute inset-0 bg-lattice-lines bg-lattice opacity-60;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 78%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
